@@ -5,6 +5,18 @@
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// ----- Anti pinch-zoom (iOS Safari ne respecte pas user-scalable=no seul) -----
+['gesturestart','gesturechange','gestureend'].forEach(ev => {
+  document.addEventListener(ev, e => e.preventDefault(), { passive: false });
+});
+// Anti double-tap zoom
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (e) => {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 320) e.preventDefault();
+  lastTouchEnd = now;
+}, { passive: false });
+
 // ----- Age gate -----
 (function ageGate(){
   const gate = document.getElementById('ageGate');

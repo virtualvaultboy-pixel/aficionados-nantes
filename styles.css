@@ -16,7 +16,7 @@
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{
   background:var(--bg);
   color:var(--ink);
@@ -25,6 +25,7 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  touch-action:pan-x pan-y;
 }
 body.locked{overflow:hidden}
 
@@ -148,9 +149,14 @@ p{color:var(--ink-soft);max-width:62ch}
 
 /* ----- Hero ----- */
 .hero{
-  position:relative;min-height:100vh;
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
   display:grid;place-items:center;text-align:center;
-  padding:8rem 1.2rem 4rem;overflow:hidden;
+  padding:8rem 1.2rem 4rem;
+  padding-left:max(1.2rem, env(safe-area-inset-left));
+  padding-right:max(1.2rem, env(safe-area-inset-right));
+  overflow:hidden;
 }
 .hero-bg{
   position:absolute;inset:0;z-index:0;
@@ -607,6 +613,42 @@ p{color:var(--ink-soft);max-width:62ch}
 @media (max-width:560px){
   .stats-inner{grid-template-columns:1fr}
   .stat+.stat::before{display:none}
+}
+
+/* ----- Hero : adaptation fine mobile (s'assurer qu'il tient au viewport) ----- */
+@media (max-width:720px){
+  .hero{
+    padding:6rem 1.1rem 3rem;
+    min-height:100dvh;
+  }
+  .hero h1{font-size:clamp(2rem, 9vw, 2.8rem);line-height:1.05;margin-bottom:1rem}
+  .hero .eyebrow{margin-bottom:1rem;font-size:.66rem;letter-spacing:.28em}
+  .lead{font-size:1rem;line-height:1.45;margin:0 auto 1.6rem;max-width:38ch}
+  .lead br{display:none}
+  .hero-form{gap:.7rem}
+  .hero-row{grid-template-columns:1fr;gap:.7rem}
+  .hero-form input{padding:.85rem 1rem;font-size:.92rem}
+  .hero-form button{padding:.95rem 1.6rem}
+  .hero-mini{font-size:.62rem;letter-spacing:.14em;margin-top:.4rem}
+  .hero-secondary{margin-top:1.6rem;gap:1.4rem;font-size:.7rem}
+  .scroll-hint{bottom:1.2rem}
+  .scroll-hint span{height:34px}
+}
+
+/* Très petits écrans (iPhone SE etc.) */
+@media (max-width:380px), (max-height:680px) and (max-width:720px){
+  .hero{padding:5rem .9rem 2.4rem}
+  .hero h1{font-size:clamp(1.7rem, 8.5vw, 2.3rem)}
+  .lead{font-size:.92rem;margin-bottom:1.2rem}
+  .hero-secondary{display:none}
+  .scroll-hint{display:none}
+}
+
+/* Mode paysage téléphone : pas de min-height bloquant */
+@media (max-height:520px) and (orientation:landscape){
+  .hero{min-height:auto;padding:5rem 1.2rem 2.4rem}
+  .hero h1{font-size:1.8rem}
+  .lead{font-size:.9rem;margin-bottom:1rem}
 }
 
 @media (prefers-reduced-motion: reduce){
