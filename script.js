@@ -268,22 +268,28 @@ function bindForm(formId, okId) {
     const action = form.getAttribute('action');
     const data = new FormData(form);
 
-    // Tant que Formspree n'est pas configuré, on confirme localement
-    if (!action || action.includes('YOUR_FORM_ID')) {
-      ok.hidden = false;
-      form.reset();
-      console.warn('[Aficionados] Formulaire non branché — remplacer YOUR_FORM_ID par votre ID Formspree.');
-      return;
+    if (!action){
+      ok.hidden = false; form.reset(); return;
     }
+
+    const btn = form.querySelector('button[type="submit"]');
+    const btnLabel = btn ? btn.textContent : '';
+    if (btn){ btn.disabled = true; btn.textContent = 'Envoi…'; }
 
     try {
       const res = await fetch(action, {
         method: 'POST', body: data, headers: { 'Accept': 'application/json' }
       });
-      if (res.ok) { ok.hidden = false; form.reset(); }
-      else { alert('Erreur lors de l\'envoi. Réessayez ou écrivez-nous directement.'); }
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && (json.success === 'true' || json.success === true || res.status === 200)) {
+        ok.hidden = false; form.reset();
+      } else {
+        alert('Erreur lors de l\'envoi. Vous pouvez aussi nous écrire directement sur WhatsApp : 06 37 70 18 95.');
+      }
     } catch (err) {
-      alert('Erreur réseau. Réessayez plus tard.');
+      alert('Erreur réseau. Vous pouvez aussi nous écrire directement sur WhatsApp : 06 37 70 18 95.');
+    } finally {
+      if (btn){ btn.disabled = false; btn.textContent = btnLabel; }
     }
   });
 }

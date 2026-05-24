@@ -83,6 +83,12 @@
   <div class="grain" aria-hidden="true"></div>
   <div class="cursor-light" aria-hidden="true"></div>
 
+  <!-- Bouton flottant WhatsApp -->
+  <a href="https://wa.me/33637701895?text=Bonjour%2C%20je%20d%C3%A9couvre%20Aficionados%20Nantes%20et%20j%27aimerais%20en%20savoir%20plus." class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Nous contacter sur WhatsApp">
+    <i class="ph-fill ph-whatsapp-logo"></i>
+    <span>Discuter</span>
+  </a>
+
   <!-- Age gate légal -->
   <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
     <div class="age-card">
@@ -133,9 +139,11 @@
       <h1 class="reveal hero-title">L'art du <em>cigare</em>,<br/>autour d'une table.</h1>
       <p class="lead reveal">Une soirée par mois, un dîner, deux cigares et de bonnes conversations.<br/>L'adhésion est gratuite — rejoignez le cercle.</p>
 
-      <form id="signupForm" class="hero-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <input type="hidden" name="_subject" value="Nouvelle inscription Aficionados Nantes" />
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+      <form id="signupForm" class="hero-form reveal" action="https://formsubmit.co/ajax/fleurisson.yann@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="🍂 Nouvelle inscription · Aficionados Nantes" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
         <div class="hero-row">
           <input type="text" name="prenom" placeholder="Prénom" required />
           <input type="text" name="nom" placeholder="Nom" required />
@@ -468,11 +476,32 @@
     <div class="container narrow">
       <p class="eyebrow center reveal">Rejoindre le Cercle</p>
       <h2 class="center reveal">Une demande, une <em>conversation</em>.</h2>
-      <p class="center sub reveal">Les adhésions se font par parrainage ou sur entretien. Écrivez-nous — nous prenons le temps de répondre.</p>
+      <p class="center sub reveal">L'adhésion est gratuite. Écrivez-nous, appelez-nous sur WhatsApp, ou venez en invité à une soirée pour vous faire votre idée.</p>
 
-      <form id="contactForm" class="form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <input type="hidden" name="_subject" value="Nouveau contact Aficionados Nantes" />
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+      <div class="contact-channels reveal">
+        <a href="https://wa.me/33637701895?text=Bonjour%2C%20je%20d%C3%A9couvre%20Aficionados%20Nantes%20et%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" class="channel-card whatsapp">
+          <i class="ph-fill ph-whatsapp-logo channel-icon"></i>
+          <div>
+            <strong>WhatsApp</strong>
+            <span>06 37 70 18 95 · réponse rapide</span>
+          </div>
+          <i class="ph ph-arrow-up-right channel-arrow"></i>
+        </a>
+        <div class="channel-or"><span>ou</span></div>
+        <div class="channel-card form-card">
+          <i class="ph ph-paper-plane-tilt channel-icon"></i>
+          <div>
+            <strong>Formulaire</strong>
+            <span>On vous répond sous 48h</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="contactForm" class="form reveal" action="https://formsubmit.co/ajax/fleurisson.yann@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="✉️ Nouveau message · Aficionados Nantes" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
         <div class="row">
           <label><span>Nom</span><input type="text" name="nom" required /></label>
           <label><span>Prénom</span><input type="text" name="prenom" required /></label>
@@ -499,10 +528,11 @@
         <a href="#journal">Journal</a>
       </div>
       <div class="footer-links">
-        <h4>Suivez-nous</h4>
+        <h4>Contact & réseaux</h4>
+        <a href="https://wa.me/33637701895" target="_blank" rel="noopener"><i class="ph-fill ph-whatsapp-logo"></i> WhatsApp · 06 37 70 18 95</a>
         <a href="https://www.youtube.com/@yanlenantais7162" target="_blank" rel="noopener"><i class="ph-fill ph-youtube-logo"></i> YouTube</a>
         <a href="https://www.facebook.com/people/Aficionados-Nantes/pfbid0346mQar2bmedypmJHji1Zu9KyeT4qBuhgH6BCsPv5T2sR9U51wN89vrC7rkzX6Subl/" target="_blank" rel="noopener"><i class="ph-fill ph-facebook-logo"></i> Facebook</a>
-        <a href="#rejoindre"><i class="ph ph-envelope-simple"></i> Contact</a>
+        <a href="#rejoindre"><i class="ph ph-paper-plane-tilt"></i> Formulaire</a>
       </div>
       <p class="legal">Fumer nuit gravement à votre santé et à celle de votre entourage.</p>
       <p class="copy">© <span id="year"></span> Aficionados Nantes · Tous droits réservés · Mentions légales</p>
