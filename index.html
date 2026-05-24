@@ -65,16 +65,16 @@
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Soirée Cohíba · Accord Rhum vieux",
+    "name": "Soirée privée · Exposition de voitures",
     "startDate": "2026-06-14T19:30",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "eventStatus": "https://schema.org/EventScheduled",
     "location": {
       "@type": "Place",
-      "name": "Nantes centre",
+      "name": "Lieu confidentiel · Nantes",
       "address": {"@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR"}
     },
-    "description": "Dégustation guidée — module Behike 56, accord rhums agricoles millésimés.",
+    "description": "Une soirée d'exception dans un lieu atypique — exposition de voitures privatisée pour le cercle.",
     "organizer": {"@type": "Organization", "name": "Aficionados Nantes"}
   }
   </script>
@@ -106,9 +106,9 @@
     </a>
     <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
       <a href="#cercle">Le Cercle</a>
+      <a href="#format">Format</a>
       <a href="#soirees">Soirées</a>
       <a href="#journal">Journal</a>
-      <a href="#videos">Vidéos</a>
       <a href="#rejoindre" class="cta-link">Rejoindre</a>
     </nav>
     <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
@@ -129,9 +129,9 @@
     </div>
     <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-inner">
-      <p class="eyebrow reveal">Cercle privé · Nantes</p>
-      <h1 class="reveal hero-title">L'art du <em>cigare</em>,<br/>en cercle restreint.</h1>
-      <p class="lead reveal">Soirées confidentielles, dégustations rares, transmission d'un savoir-faire.<br/>Rejoignez le cercle — l'inscription se fait par cette porte.</p>
+      <p class="eyebrow reveal">Cercle de passionnés · Nantes</p>
+      <h1 class="reveal hero-title">L'art du <em>cigare</em>,<br/>autour d'une table.</h1>
+      <p class="lead reveal">Une soirée par mois, un dîner, deux cigares et de bonnes conversations.<br/>L'adhésion est gratuite — rejoignez le cercle.</p>
 
       <form id="signupForm" class="hero-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
         <input type="hidden" name="_subject" value="Nouvelle inscription Aficionados Nantes" />
@@ -171,30 +171,67 @@
     <div class="container split">
       <div class="split-text">
         <p class="eyebrow reveal">Le Cercle</p>
-        <h2 class="reveal">Un lieu où le <em>temps</em> reprend sa place.</h2>
-        <p class="reveal">Aficionados Nantes réunit les passionnés du cigare autour de soirées intimistes, de dégustations rares et de rencontres avec les maîtres du métier. Nous cultivons la patience, le geste et la conversation.</p>
-        <p class="reveal">Notre cercle est confidentiel. Les places sont limitées, l'esprit est libre.</p>
+        <h2 class="reveal">Un club où l'on prend le <em>temps</em>.</h2>
+        <p class="reveal">Aficionados Nantes réunit une quarantaine de passionnés du cigare autour d'une soirée par mois — un dîner au restaurant, un à deux modules en clôture, et de longues conversations.</p>
+        <p class="reveal">L'adhésion est gratuite. Chacun paie sa consommation, apporte la bouteille de son choix et règle ses cigares. On vient pour le plaisir du moment, pas pour la cotisation.</p>
       </div>
       <ul class="pillars">
         <li class="reveal">
-          <i class="ph-duotone ph-wine pillar-icon" aria-hidden="true"></i>
+          <i class="ph-duotone ph-calendar-heart pillar-icon" aria-hidden="true"></i>
           <span class="num">01</span>
-          <h3>Dégustation</h3>
-          <p>Modules guidés, accords spiritueux, références d'exception.</p>
+          <h3>Mensuel</h3>
+          <p>Une soirée par mois au restaurant, entrée, plat, dessert et clôture cigare.</p>
         </li>
         <li class="reveal">
-          <i class="ph-duotone ph-hand-heart pillar-icon" aria-hidden="true"></i>
+          <i class="ph-duotone ph-users-three pillar-icon" aria-hidden="true"></i>
           <span class="num">02</span>
-          <h3>Transmission</h3>
-          <p>Rencontres avec torcedors, maîtres de chai, négociants.</p>
+          <h3>Convivial</h3>
+          <p>Une vingtaine de convives par soirée. Des moments d'échange aussi le weekend.</p>
         </li>
         <li class="reveal">
-          <i class="ph-duotone ph-key pillar-icon" aria-hidden="true"></i>
+          <i class="ph-duotone ph-hand-coins pillar-icon" aria-hidden="true"></i>
           <span class="num">03</span>
-          <h3>Confidentialité</h3>
-          <p>Soirées privées, lieux discrets, esprit de cercle.</p>
+          <h3>Accessible</h3>
+          <p>Adhésion gratuite. Chacun règle sa conso, sa bouteille et ses cigares.</p>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- LE FORMAT -->
+  <section id="format" class="section section-dark">
+    <div class="container">
+      <p class="eyebrow center reveal">Le format</p>
+      <h2 class="center reveal">Quatre <em>temps</em>, une seule envie : partager.</h2>
+      <p class="center sub reveal">Notre année se construit autour d'un rythme mensuel, ponctué de soirées à thème et de quelques moments d'exception.</p>
+
+      <div class="format-grid">
+        <article class="format-card reveal">
+          <i class="ph-duotone ph-fork-knife format-icon"></i>
+          <h3>Soirée mensuelle</h3>
+          <p>Chaque mois, un dîner au restaurant — entrée, plat, dessert. La soirée se prolonge autour d'un ou deux modules choisis pour l'occasion.</p>
+        </article>
+        <article class="format-card reveal">
+          <i class="ph-duotone ph-confetti format-icon"></i>
+          <h3>Soirées à thème</h3>
+          <p>Plusieurs fois dans l'année, on s'écarte du classique : Saint-Patrick, soirée américaine, dégustation comparée… L'occasion de changer de registre.</p>
+        </article>
+        <article class="format-card reveal">
+          <i class="ph-duotone ph-sparkle format-icon"></i>
+          <h3>Soirées d'exception</h3>
+          <p>Une à deux fois par an, le cercle se déplace dans un lieu atypique — exposition de voitures privatisée, dégustation hors les murs, rencontre rare.</p>
+        </article>
+        <article class="format-card reveal">
+          <i class="ph-duotone ph-chats-circle format-icon"></i>
+          <h3>Échanges informels</h3>
+          <p>Entre les soirées, on se retrouve aussi le weekend ou en semaine selon les disponibilités, pour un verre, un cigare et la conversation.</p>
+        </article>
+      </div>
+
+      <p class="format-note reveal">
+        <i class="ph ph-info" aria-hidden="true"></i>
+        <span>Adhésion gratuite. Chaque adhérent règle simplement sa consommation au restaurant, apporte la bouteille de son choix et paie ses cigares.</span>
+      </p>
     </div>
   </section>
 
@@ -209,38 +246,38 @@
         <li class="reveal">
           <div class="agenda-date"><span class="day">14</span><span class="month">Juin</span></div>
           <div class="agenda-body">
-            <h3>Soirée Cohíba · Accord Rhum vieux</h3>
-            <p>Dégustation guidée — module Behike 56, accord rhums agricoles millésimés.</p>
+            <h3>Soirée privée · Exposition de voitures</h3>
+            <p>Une soirée d'exception dans un lieu atypique — exposition de voitures privatisée pour le cercle. Cigares, accords spiritueux et belle mécanique.</p>
             <span class="agenda-meta">
-              <i class="ph ph-map-pin" aria-hidden="true"></i> Nantes centre
+              <i class="ph ph-map-pin" aria-hidden="true"></i> Lieu confidentiel · Nantes
               <i class="ph ph-clock" aria-hidden="true"></i> 19h30
-              <i class="ph ph-envelope-simple" aria-hidden="true"></i> Sur invitation
+              <i class="ph ph-users-three" aria-hidden="true"></i> Adhérents et invités
             </span>
           </div>
           <a href="#rejoindre" class="agenda-cta">Réserver</a>
         </li>
         <li class="reveal">
-          <div class="agenda-date"><span class="day">02</span><span class="month">Juil</span></div>
+          <div class="agenda-date"><span class="day">02</span><span class="month">Juil.</span></div>
           <div class="agenda-body">
-            <h3>Rencontre Torcedor</h3>
-            <p>Un maître rouleur cubain partage son geste lors d'une session ouverte aux membres.</p>
+            <h3>Soirée mensuelle · Cuvée d'été</h3>
+            <p>Notre rendez-vous mensuel au restaurant — entrée, plat, dessert, un à deux modules en clôture. Chacun apporte sa bouteille.</p>
             <span class="agenda-meta">
-              <i class="ph ph-map-pin" aria-hidden="true"></i> Lieu confidentiel
-              <i class="ph ph-clock" aria-hidden="true"></i> 20h
-              <i class="ph ph-users-three" aria-hidden="true"></i> Membres uniquement
+              <i class="ph ph-map-pin" aria-hidden="true"></i> Restaurant partenaire · Nantes
+              <i class="ph ph-clock" aria-hidden="true"></i> 19h30
+              <i class="ph ph-users-three" aria-hidden="true"></i> Adhérents · 20 places
             </span>
           </div>
           <a href="#rejoindre" class="agenda-cta">Réserver</a>
         </li>
         <li class="reveal">
-          <div class="agenda-date"><span class="day">12</span><span class="month">Sept</span></div>
+          <div class="agenda-date"><span class="day">12</span><span class="month">Sept.</span></div>
           <div class="agenda-body">
-            <h3>Dîner Vuelta Abajo</h3>
-            <p>Cinq services, cinq modules. Une traversée du terroir cubain en une soirée.</p>
+            <h3>Soirée à thème · Américaine</h3>
+            <p>Menu d'inspiration américaine, cigares dominicains et bourbon. Une soirée qui change du classique cubain.</p>
             <span class="agenda-meta">
-              <i class="ph ph-map-pin" aria-hidden="true"></i> Restaurant partenaire
-              <i class="ph ph-clock" aria-hidden="true"></i> 19h
-              <i class="ph ph-check-circle" aria-hidden="true"></i> Inscription requise
+              <i class="ph ph-map-pin" aria-hidden="true"></i> Restaurant partenaire · Nantes
+              <i class="ph ph-clock" aria-hidden="true"></i> 19h30
+              <i class="ph ph-users-three" aria-hidden="true"></i> Adhérents · 20 places
             </span>
           </div>
           <a href="#rejoindre" class="agenda-cta">Réserver</a>
@@ -249,11 +286,11 @@
 
       <div class="bespoke reveal">
         <div>
-          <p class="eyebrow"><i class="ph ph-sparkle" aria-hidden="true"></i> Sur mesure</p>
-          <h3>Organiser votre soirée cigare</h3>
-          <p>Anniversaires, séminaires, mariages, EVG. Nous concevons votre événement épicurien — dégustation guidée, accords spiritueux, encadrement par un expert du cercle.</p>
+          <p class="eyebrow"><i class="ph ph-sparkle" aria-hidden="true"></i> Devenir adhérent</p>
+          <h3>L'adhésion est gratuite.</h3>
+          <p>Pas de cotisation, pas de carte. On vient une fois en invité, on prend ses marques, et si l'esprit du cercle convient — on devient adhérent. Écrivez-nous pour être invité à la prochaine soirée.</p>
         </div>
-        <a href="#rejoindre" class="btn btn-ghost">Nous contacter <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+        <a href="#rejoindre" class="btn btn-ghost">Nous écrire <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
       </div>
     </div>
   </section>
