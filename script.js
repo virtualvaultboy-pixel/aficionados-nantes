@@ -253,3 +253,67 @@ function bindForm(formId, okId) {
 }
 bindForm('signupForm', 'signupOk');
 bindForm('contactForm', 'contactOk');
+
+// ----- Counters animés (stats) -----
+(function counters(){
+  const nums = document.querySelectorAll('.stat-num');
+  if (!nums.length) return;
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  function animate(el){
+    const target = parseInt(el.dataset.count, 10);
+    const duration = 1800;
+    const start = performance.now();
+    function step(now){
+      const t = Math.min(1, (now - start) / duration);
+      el.textContent = Math.round(target * ease(t)).toLocaleString('fr-FR');
+      if (t < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString('fr-FR');
+    }
+    requestAnimationFrame(step);
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  nums.forEach(n => io.observe(n));
+})();
+
+// ----- Magnetic buttons -----
+(function magnetic(){
+  if (prefersReduced || matchMedia('(max-width:900px)').matches) return;
+  const targets = document.querySelectorAll('.btn-primary, .agenda-cta');
+  targets.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const r = el.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+      el.style.transform = `translate(${x * 0.18}px, ${y * 0.28}px)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+})();
+
+// ----- Cursor light (desktop only) -----
+(function cursorLight(){
+  if (prefersReduced || matchMedia('(max-width:900px)').matches) return;
+  const light = document.querySelector('.cursor-light');
+  if (!light) return;
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  let active = false;
+
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    if (!active) { active = true; light.classList.add('active'); }
+  });
+  document.addEventListener('mouseleave', () => {
+    active = false; light.classList.remove('active');
+  });
+  function loop(){
+    cx += (mx - cx) * 0.18;
+    cy += (my - cy) * 0.18;
+    light.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
