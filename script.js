@@ -119,12 +119,43 @@ onScroll();
   mq.addEventListener('change', e => { if (e.matches) close(); });
 })();
 
+// ----- Util : split caractères pour le hero title -----
+function splitText(el){
+  if (!el || el.dataset.split === '1') return;
+  el.dataset.split = '1';
+  const walk = (node) => {
+    if (node.nodeType === 3) {
+      const text = node.textContent;
+      const frag = document.createDocumentFragment();
+      for (const ch of text) {
+        if (ch === ' ') {
+          frag.appendChild(document.createTextNode(' '));
+          continue;
+        }
+        const wrap = document.createElement('span');
+        wrap.className = 'char';
+        const inner = document.createElement('span');
+        inner.className = 'char-inner';
+        inner.textContent = ch;
+        wrap.appendChild(inner);
+        frag.appendChild(wrap);
+      }
+      node.parentNode.replaceChild(frag, node);
+    } else if (node.nodeType === 1) {
+      if (node.tagName === 'BR') return;
+      const children = [...node.childNodes];
+      children.forEach(walk);
+    }
+  };
+  walk(el);
+}
+
 // ----- Animations GSAP / Fallback IntersectionObserver -----
 if (window.gsap && window.ScrollTrigger && !prefersReduced) {
   gsap.registerPlugin(ScrollTrigger);
 
-  // Reveal universel
-  gsap.utils.toArray('.reveal').forEach(el => {
+  // Reveal universel (sauf hero-title qui a sa propre anim)
+  gsap.utils.toArray('.reveal:not(.hero-title)').forEach(el => {
     gsap.fromTo(el,
       { autoAlpha: 0, y: 36 },
       {
@@ -134,10 +165,18 @@ if (window.gsap && window.ScrollTrigger && !prefersReduced) {
     );
   });
 
-  // Hero title : effet d'apparition lettre par mot
+  // Hero title : split caractères + reveal masqué lettre par lettre
   const heroTitle = document.querySelector('.hero-title');
   if (heroTitle) {
-    gsap.from(heroTitle, { autoAlpha: 0, y: 60, duration: 1.4, ease: 'power4.out', delay: .2 });
+    splitText(heroTitle);
+    gsap.fromTo('.hero-title .char-inner',
+      { yPercent: 110 },
+      {
+        yPercent: 0, duration: 0.95, ease: 'power3.out',
+        stagger: 0.025, delay: 0.35,
+        clearProps: 'transform'
+      }
+    );
   }
 
   // Parallax hero-bg
@@ -444,6 +483,7 @@ function hydrateArticles(articles){
       <article class="post">
         <div class="post-img post-img-${(i % 4) + 1}">
           <img class="post-photo" src="${imgUrl}" alt="${escapeHtml(a.title)}" loading="lazy" />
+          <span class="cutter" aria-hidden="true"></span>
           <span class="post-cat">${escapeHtml(a.category || 'Article')}</span>
         </div>
         <div class="post-body">
@@ -524,10 +564,88 @@ function animateCounter(el){
   hydrateEvents(data.events);
   hydrateArticles(data.articles);
   hydrateTestimonials(data.testimonials);
+  // Countdown : utiliser le vrai prochain événement depuis Sanity
+  if (data.events && data.events.length){
+    const next = data.events.find(e => new Date(e.date) > new Date()) || data.events[0];
+    window.__nextEvent = next;
+    updateCountdown();
+  }
   // Refresh ScrollTrigger pour recalibrer après remplacement du DOM
   if (window.ScrollTrigger) {
     requestAnimationFrame(() => ScrollTrigger.refresh());
   }
+})();
+
+// ----- Countdown prochaine soirée -----
+function updateCountdown(){
+  const next = window.__nextEvent || { date: '2026-06-14T19:30', title: 'Soirée privée · Exposition de voitures' };
+  const target = new Date(next.date);
+  if (isNaN(target.getTime())) return;
+  const now = new Date();
+  const diffMs = target - now;
+  const days = Math.max(0, Math.ceil(diffMs / 86400000));
+
+  const section = document.getElementById('countdown');
+  const titleEl = document.getElementById('countdownTitle');
+  const numEl = document.getElementById('countdownNum');
+  const dateEl = document.getElementById('countdownDate');
+
+  if (titleEl) titleEl.textContent = next.title;
+  if (dateEl) dateEl.textContent = target.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  if (section) {
+    if (days <= 0) {
+      section.hidden = true;
+    } else {
+      section.hidden = false;
+      // Anim du nombre
+      if (numEl) {
+        const duration = 1400;
+        const start = performance.now();
+        const ease = t => 1 - Math.pow(1 - t, 3);
+        function step(now){
+          const t = Math.min(1, (now - start) / duration);
+          numEl.textContent = Math.round(days * ease(t));
+          if (t < 1) requestAnimationFrame(step);
+          else numEl.textContent = days;
+        }
+        // Anim seulement quand visible
+        const io = new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) { requestAnimationFrame(step); io.disconnect(); }
+        }, { threshold: 0.3 });
+        io.observe(section);
+      }
+    }
+  }
+}
+updateCountdown();
+
+// ----- Cursor dot (desktop) : petit dot doré qui suit la souris -----
+(function cursorDot(){
+  if (prefersReduced || matchMedia('(max-width:900px)').matches) return;
+  const dot = document.querySelector('.cursor-dot');
+  if (!dot) return;
+  let mx = 0, my = 0, cx = 0, cy = 0, active = false;
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    if (!active) { active = true; dot.classList.add('active'); }
+  });
+  document.addEventListener('mouseleave', () => { active = false; dot.classList.remove('active'); });
+  function loop(){
+    cx += (mx - cx) * 0.3;
+    cy += (my - cy) * 0.3;
+    dot.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  // Hover scale sur les éléments interactifs
+  const HOVERABLES = 'a, button, .post, .testimonial, .format-card, .agenda li, .channel-card, .faq-item summary, details summary';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest && e.target.closest(HOVERABLES)) dot.classList.add('hover');
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest(HOVERABLES)) dot.classList.remove('hover');
+  });
 })();
 
 // ----- Cursor light (desktop only) -----

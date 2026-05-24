@@ -82,6 +82,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
   <div class="cursor-light" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
 
   <!-- Bouton flottant WhatsApp -->
   <a href="https://wa.me/33637701895?text=Bonjour%2C%20je%20d%C3%A9couvre%20Aficionados%20Nantes%20et%20j%27aimerais%20en%20savoir%20plus." class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Nous contacter sur WhatsApp">
@@ -92,7 +93,7 @@
   <!-- Age gate légal -->
   <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
     <div class="age-card">
-      <span class="brand-mark age-mark">A</span>
+      <span class="brand-mark age-mark"><svg class="brand-svg" viewBox="0 0 34 34" aria-hidden="true"><path d="M9 25 L17 7 L25 25 M12.5 18 L21.5 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <p class="eyebrow center">Aficionados Nantes</p>
       <h2 id="ageTitle" class="center">Interdit aux mineurs<br/>de <em>18 ans</em>.</h2>
       <p class="center sub">Avez-vous plus de 18 ans ?</p>
@@ -107,7 +108,7 @@
 
   <header class="nav">
     <a class="brand" href="#top">
-      <span class="brand-mark">A</span>
+      <span class="brand-mark"><svg class="brand-svg" viewBox="0 0 34 34" aria-hidden="true"><path d="M9 25 L17 7 L25 25 M12.5 18 L21.5 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="brand-name">Aficionados <em>Nantes</em></span>
     </a>
     <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
@@ -162,6 +163,22 @@
       </div>
     </div>
     <div class="scroll-hint" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- COUNTDOWN PROCHAINE SOIRÉE -->
+  <section class="countdown reveal" id="countdown" hidden>
+    <div class="container countdown-inner">
+      <div class="countdown-left">
+        <p class="eyebrow"><i class="ph-fill ph-calendar-heart" aria-hidden="true"></i> Prochaine soirée</p>
+        <h3 id="countdownTitle">Soirée privée · Exposition de voitures</h3>
+        <span class="countdown-date" id="countdownDate">14 juin 2026</span>
+      </div>
+      <div class="countdown-badge">
+        <span class="countdown-prefix">J−</span>
+        <span class="countdown-num" id="countdownNum">21</span>
+        <span class="countdown-suffix">jours</span>
+      </div>
+    </div>
   </section>
 
   <!-- STATS STRIP -->
@@ -347,6 +364,7 @@
         <article class="post reveal">
           <div class="post-img post-img-1">
             <img class="post-photo" src="https://images.pexels.com/photos/10343917/pexels-photo-10343917.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cigare Cohíba dans un cendrier cristal avec fumée" loading="lazy" />
+            <span class="cutter" aria-hidden="true"></span>
             <span class="post-cat">Module</span>
           </div>
           <div class="post-body">
@@ -360,6 +378,7 @@
         <article class="post reveal">
           <div class="post-img post-img-2">
             <img class="post-photo" src="https://images.pexels.com/photos/10343915/pexels-photo-10343915.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sélection de cigares de différentes vitoles" loading="lazy" />
+            <span class="cutter" aria-hidden="true"></span>
             <span class="post-cat">Savoir-faire</span>
           </div>
           <div class="post-body">
@@ -373,6 +392,7 @@
         <article class="post reveal">
           <div class="post-img post-img-3">
             <img class="post-photo" src="https://images.pexels.com/photos/5944420/pexels-photo-5944420.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cigare allumé dans une ambiance sombre" loading="lazy" />
+            <span class="cutter" aria-hidden="true"></span>
             <span class="post-cat">Conservation</span>
           </div>
           <div class="post-body">
@@ -386,6 +406,7 @@
         <article class="post reveal">
           <div class="post-img post-img-4">
             <img class="post-photo" src="https://images.pexels.com/photos/31332328/pexels-photo-31332328.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Champs de tabac de la région cubaine" loading="lazy" />
+            <span class="cutter" aria-hidden="true"></span>
             <span class="post-cat">Voyage</span>
           </div>
           <div class="post-body">
@@ -445,6 +466,87 @@
             </div>
           </figcaption>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container narrow">
+      <p class="eyebrow center reveal">Questions fréquentes</p>
+      <h2 class="center reveal">Ce qu'on nous <em>demande</em>.</h2>
+      <p class="center sub reveal">Tout ce que vous voulez savoir avant de pousser la porte du cercle.</p>
+
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>
+            <span>Comment se déroule une soirée ?</span>
+            <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+          </summary>
+          <div class="faq-answer">
+            <p>Une fois par mois, une vingtaine de personnes se retrouvent dans un restaurant partenaire. Entrée, plat, dessert. La soirée se prolonge avec un à deux modules choisis pour l'occasion. Chacun apporte la bouteille de son choix.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Faut-il être fumeur régulier de cigares ?</span>
+            <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+          </summary>
+          <div class="faq-answer">
+            <p>Non, pas du tout. Beaucoup de nos adhérents ne fument qu'à l'occasion de nos soirées. L'important est la curiosité, l'envie de découvrir et le goût du partage.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Combien ça coûte ?</span>
+            <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+          </summary>
+          <div class="faq-answer">
+            <p>L'adhésion est <strong>gratuite</strong>. Chacun règle simplement sa consommation au restaurant et le ou les cigares qu'il consomme. Compter en moyenne 60 à 90 € pour le repas et les cigares, selon les modules choisis.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Comment devenir adhérent ?</span>
+            <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+          </summary>
+          <div class="faq-answer">
+            <p>Le plus simple est de venir une première fois en invité à une soirée pour vous faire votre idée. Si l'esprit du cercle vous convient, l'adhésion suit naturellement — par WhatsApp ou via notre formulaire. Pas de cotisation, pas de carte.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Y a-t-il un dress code ?</span>
+            <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+          </summary>
+          <div class="faq-answer">
+            <p>Tenue correcte, dans l'esprit "élégant décontracté". Nous nous habillons un peu pour l'occasion, sans contrainte stricte. Les soirées d'exception peuvent demander un effort supplémentaire.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Peut-on venir en couple, entre amis ?</span>
+            <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+          </summary>
+          <div class="faq-answer">
+            <p>Bien sûr. Les soirées sont ouvertes aux conjoints, conjointes et amis. La seule limite, ce sont les ~20 places par soirée. Pensez à réserver bien à l'avance pour les éditions à thème ou d'exception.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Quelles maisons de cigares dégustez-vous ?</span>
+            <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+          </summary>
+          <div class="faq-answer">
+            <p>Une grande variété — du classique cubain (Cohíba, Trinidad, Partagás, Hoyo de Monterrey) aux maisons dominicaines et nicaraguayennes (Davidoff, Padrón, Arturo Fuente). Les choix varient selon la soirée, le thème et les arrivages.</p>
+          </div>
+        </details>
       </div>
     </div>
   </section>
@@ -517,7 +619,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div>
-        <span class="brand-mark">A</span>
+        <span class="brand-mark"><svg class="brand-svg" viewBox="0 0 34 34" aria-hidden="true"><path d="M9 25 L17 7 L25 25 M12.5 18 L21.5 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <p class="footer-name">Aficionados <em>Nantes</em></p>
         <p class="footer-tag">Cercle privé dédié à l'art du cigare.</p>
       </div>
