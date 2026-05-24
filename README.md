@@ -55,6 +55,34 @@ gh api -X POST /repos/virtualvaultboy-pixel/aficionados-nantes/pages \
 Le site sera dispo sous 1-2 minutes à :
 **https://virtualvaultboy-pixel.github.io/aficionados-nantes/**
 
+## CMS (Sanity) — modération du contenu
+
+Le client gère lui-même les contenus dynamiques via un panneau admin :
+
+**🔗 Panneau admin** : https://aficionados-nantes.sanity.studio/
+
+**Onglets disponibles**
+- **Réglages du site** — titre, accroche, liens sociaux
+- **Statistique** — les chiffres clés (Soirées par an, Membres actifs, etc.)
+- **Maison partenaire** — les marques de cigares qui défilent
+- **Événement / Soirée** — l'agenda
+- **Article du Journal** — les billets de blog
+- **Témoignage** — les citations des membres
+
+**Pour modifier** : connexion via Google/GitHub avec le compte Sanity du projet, puis tu cliques sur un onglet, tu modifies/supprimes/ajoutes, et tu cliques sur **Publish**. Le site se met à jour automatiquement au prochain chargement (cache HTTP de quelques secondes côté Sanity).
+
+**Pour donner l'accès au client** : invite-le depuis l'onglet *Members* du dashboard Sanity → https://sanity.io/manage. Il pourra créer son compte avec son email.
+
+### Détails techniques CMS
+
+- **Project ID** : `7022jmvv`
+- **Dataset** : `production`
+- **API publique** (read-only, aucun token nécessaire) :
+  ```
+  https://7022jmvv.api.sanity.io/v2024-01-01/data/query/production?query={GROQ}
+  ```
+- **Fallback statique** : si Sanity est down ou bloqué, le site garde les valeurs codées en dur dans `index.html`.
+
 ## À configurer plus tard (quand le client signe)
 
 ### 1. Formulaires (Formspree — gratuit jusqu'à 50/mois)

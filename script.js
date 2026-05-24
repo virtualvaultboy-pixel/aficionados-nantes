@@ -330,6 +330,200 @@ bindForm('contactForm', 'contactOk');
   });
 })();
 
+// ============================================================
+// Sanity CMS hydration — récupère les contenus dynamiques
+// ============================================================
+const SANITY = { projectId: '7022jmvv', dataset: 'production', apiVersion: '2024-01-01' };
+
+const MONTHS_FR = ['Janv.','Févr.','Mars','Avr.','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'];
+
+function escapeHtml(str){
+  if (str == null) return '';
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function formatDay(iso){
+  const d = new Date(iso);
+  return { day: String(d.getDate()).padStart(2, '0'), month: MONTHS_FR[d.getMonth()] };
+}
+function formatDateFr(iso){
+  return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+function sanityImageUrl(ref, w = 800){
+  // ref ex: image-AbC...-1600x900-jpg
+  const m = /^image-([^-]+)-(\d+x\d+)-(\w+)$/.exec(ref);
+  if (!m) return null;
+  return `https://cdn.sanity.io/images/${SANITY.projectId}/${SANITY.dataset}/${m[1]}-${m[2]}.${m[3]}?w=${w}&auto=format&fit=crop`;
+}
+
+async function fetchSanity(){
+  const query = `{
+    "settings": *[_type == "siteSettings"][0],
+    "stats": *[_type == "stat"] | order(order asc),
+    "partners": *[_type == "partner"] | order(order asc),
+    "events": *[_type == "event"] | order(date asc)[0...6],
+    "articles": *[_type == "article"] | order(date desc)[0...6],
+    "testimonials": *[_type == "testimonial"] | order(order asc)[0...3]
+  }`;
+  const url = `https://${SANITY.projectId}.api.sanity.io/v${SANITY.apiVersion}/data/query/${SANITY.dataset}?query=${encodeURIComponent(query)}`;
+  try {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return (await res.json()).result;
+  } catch (err){
+    console.warn('[Sanity] Fallback statique :', err.message);
+    return null;
+  }
+}
+
+function hydrateStats(stats){
+  if (!stats || !stats.length) return;
+  const inner = document.querySelector('.stats-inner');
+  if (!inner) return;
+  inner.innerHTML = stats.map(s =>
+    `<div class="stat"><span class="stat-num" data-count="${s.value}">0</span><span class="stat-label">${escapeHtml(s.label)}</span></div>`
+  ).join('');
+  // Relance les compteurs sur les nouveaux éléments
+  inner.querySelectorAll('.stat-num').forEach(el => animateCounter(el));
+}
+
+function hydratePartners(partners){
+  if (!partners || !partners.length) return;
+  const track = document.querySelector('.marquee-track');
+  if (!track) return;
+  const block = partners.map(p => `<span>${escapeHtml(p.name)}</span><span class="dot">·</span>`).join('');
+  track.innerHTML = block + block; // boucle fluide
+}
+
+function hydrateEvents(events){
+  if (!events || !events.length) return;
+  const list = document.querySelector('.agenda');
+  if (!list) return;
+  list.innerHTML = events.map(e => {
+    const d = formatDay(e.date);
+    const meta = [
+      e.location ? `<i class="ph ph-map-pin"></i> ${escapeHtml(e.location)}` : '',
+      e.time ? `<i class="ph ph-clock"></i> ${escapeHtml(e.time)}` : '',
+      e.access ? `<i class="ph ph-envelope-simple"></i> ${escapeHtml(e.access)}` : ''
+    ].filter(Boolean).join(' ');
+    return `
+      <li>
+        <div class="agenda-date"><span class="day">${d.day}</span><span class="month">${d.month}</span></div>
+        <div class="agenda-body">
+          <h3>${escapeHtml(e.title)}</h3>
+          <p>${escapeHtml(e.description || '')}</p>
+          <span class="agenda-meta">${meta}</span>
+        </div>
+        <a href="#rejoindre" class="agenda-cta">Réserver</a>
+      </li>`;
+  }).join('');
+}
+
+function hydrateArticles(articles){
+  if (!articles || !articles.length) return;
+  const grid = document.querySelector('.blog-grid');
+  if (!grid) return;
+  const fallbackImages = [
+    'https://images.pexels.com/photos/10343917/pexels-photo-10343917.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/10343915/pexels-photo-10343915.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/5944420/pexels-photo-5944420.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/31332328/pexels-photo-31332328.jpeg?auto=compress&cs=tinysrgb&w=800'
+  ];
+  grid.innerHTML = articles.map((a, i) => {
+    let imgUrl = fallbackImages[i % fallbackImages.length];
+    if (a.image && a.image.asset && a.image.asset._ref) {
+      const url = sanityImageUrl(a.image.asset._ref);
+      if (url) imgUrl = url;
+    }
+    return `
+      <article class="post">
+        <div class="post-img post-img-${(i % 4) + 1}">
+          <img class="post-photo" src="${imgUrl}" alt="${escapeHtml(a.title)}" loading="lazy" />
+          <span class="post-cat">${escapeHtml(a.category || 'Article')}</span>
+        </div>
+        <div class="post-body">
+          <span class="post-date"><i class="ph ph-calendar-blank"></i> ${formatDateFr(a.date)}</span>
+          <h3>${escapeHtml(a.title)}</h3>
+          <p>${escapeHtml(a.excerpt || '')}</p>
+          <a href="#" class="link-arrow">Lire <span>→</span></a>
+        </div>
+      </article>`;
+  }).join('');
+}
+
+function hydrateTestimonials(testimonials){
+  if (!testimonials || !testimonials.length) return;
+  const list = document.querySelector('.testimonials');
+  if (!list) return;
+  list.innerHTML = testimonials.map(t => `
+    <figure class="testimonial">
+      <div class="quote-mark" aria-hidden="true">"</div>
+      <blockquote>${escapeHtml(t.quote)}</blockquote>
+      <figcaption>
+        <span class="initials">${escapeHtml(t.initials || '')}</span>
+        <div>
+          <strong>${escapeHtml(t.name)}</strong>
+          <span>${t.memberSince ? 'Membre depuis ' + escapeHtml(String(t.memberSince)) : ''}</span>
+        </div>
+      </figcaption>
+    </figure>`).join('');
+}
+
+function hydrateSettings(s){
+  if (!s) return;
+  if (s.heroTitle){
+    const h1 = document.querySelector('.hero h1');
+    if (h1){
+      // Conserve l'italique sur le mot "cigare" si présent
+      const safe = escapeHtml(s.heroTitle).replace(/cigare/i, '<em>cigare</em>');
+      h1.innerHTML = safe;
+    }
+  }
+  if (s.tagline){
+    const lead = document.querySelector('.hero .lead');
+    if (lead) lead.textContent = s.tagline;
+  }
+  if (s.heroEyebrow){
+    const eb = document.querySelector('.hero .eyebrow');
+    if (eb) eb.textContent = s.heroEyebrow;
+  }
+  if (s.aboutTitle){
+    const h2 = document.querySelector('#cercle h2');
+    if (h2){
+      const safe = escapeHtml(s.aboutTitle).replace(/temps/i, '<em>temps</em>');
+      h2.innerHTML = safe;
+    }
+  }
+}
+
+function animateCounter(el){
+  const target = parseInt(el.dataset.count, 10);
+  const duration = 1800;
+  const start = performance.now();
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  function step(now){
+    const t = Math.min(1, (now - start) / duration);
+    el.textContent = Math.round(target * ease(t)).toLocaleString('fr-FR');
+    if (t < 1) requestAnimationFrame(step);
+    else el.textContent = target.toLocaleString('fr-FR');
+  }
+  requestAnimationFrame(step);
+}
+
+(async function loadFromSanity(){
+  const data = await fetchSanity();
+  if (!data) return;
+  hydrateSettings(data.settings);
+  hydrateStats(data.stats);
+  hydratePartners(data.partners);
+  hydrateEvents(data.events);
+  hydrateArticles(data.articles);
+  hydrateTestimonials(data.testimonials);
+  // Refresh ScrollTrigger pour recalibrer après remplacement du DOM
+  if (window.ScrollTrigger) {
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  }
+})();
+
 // ----- Cursor light (desktop only) -----
 (function cursorLight(){
   if (prefersReduced || matchMedia('(max-width:900px)').matches) return;
