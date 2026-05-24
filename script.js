@@ -72,16 +72,40 @@ document.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
 // ----- Burger menu mobile -----
-const burger = document.querySelector('.burger');
-const links = document.querySelector('.nav-links');
-burger.addEventListener('click', () => {
-  const open = links.classList.toggle('open');
-  burger.setAttribute('aria-expanded', String(open));
-});
-links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  links.classList.remove('open');
-  burger.setAttribute('aria-expanded', 'false');
-}));
+(function burgerMenu(){
+  const burger = document.querySelector('.burger');
+  const links = document.querySelector('.nav-links');
+  const backdrop = document.querySelector('.nav-backdrop');
+  if (!burger || !links || !backdrop) return;
+
+  function open(){
+    links.classList.add('open');
+    backdrop.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('locked');
+    if (lenis) lenis.stop();
+  }
+  function close(){
+    links.classList.remove('open');
+    backdrop.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('locked');
+    if (lenis) lenis.start();
+  }
+  function toggle(){
+    if (links.classList.contains('open')) close();
+    else open();
+  }
+
+  burger.addEventListener('click', toggle);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+
+  // Sécurité : fermer si on dépasse le breakpoint
+  const mq = matchMedia('(min-width:901px)');
+  mq.addEventListener('change', e => { if (e.matches) close(); });
+})();
 
 // ----- Animations GSAP / Fallback IntersectionObserver -----
 if (window.gsap && window.ScrollTrigger && !prefersReduced) {

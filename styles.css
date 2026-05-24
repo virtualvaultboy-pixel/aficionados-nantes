@@ -129,8 +129,22 @@ p{color:var(--ink-soft);max-width:62ch}
 .cta-link::after{display:none}
 .cta-link:hover{background:var(--gold);color:var(--bg) !important}
 
-.burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem;gap:5px;flex-direction:column}
-.burger span{display:block;width:24px;height:1px;background:var(--ink)}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem;gap:5px;flex-direction:column;position:relative;z-index:60}
+.burger span{display:block;width:24px;height:1px;background:var(--ink);transition:transform .4s var(--ease), opacity .3s var(--ease), background .3s var(--ease)}
+.burger[aria-expanded="true"] span{background:var(--gold)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Backdrop */
+.nav-backdrop{
+  position:fixed;inset:0;z-index:40;
+  background:rgba(11,9,7,.65);
+  backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s var(--ease);
+}
+.nav-backdrop.open{opacity:1;pointer-events:auto}
 
 /* ----- Hero ----- */
 .hero{
@@ -558,11 +572,17 @@ p{color:var(--ink-soft);max-width:62ch}
 
 /* ----- Responsive ----- */
 @media (max-width:900px){
-  .nav-links{display:none;position:fixed;top:0;right:0;bottom:0;width:78%;max-width:340px;
+  .nav-links{
+    display:flex !important;
+    position:fixed;top:0;right:0;bottom:0;width:78%;max-width:340px;z-index:50;
     background:var(--bg-2);flex-direction:column;align-items:flex-start;justify-content:center;
-    padding:3rem;gap:1.8rem;border-left:1px solid var(--line);transform:translateX(100%);
-    transition:transform .5s var(--ease)}
-  .nav-links.open{display:flex;transform:none}
+    padding:3rem;gap:1.8rem;border-left:1px solid var(--line);
+    transform:translateX(100%);
+    transition:transform .5s var(--ease);
+    visibility:hidden;
+    overflow-y:auto;overscroll-behavior:contain;
+  }
+  .nav-links.open{transform:none;visibility:visible}
   .burger{display:flex}
   .split{grid-template-columns:1fr;gap:3rem}
   .hero-row{grid-template-columns:1fr}
