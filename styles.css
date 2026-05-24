@@ -140,12 +140,23 @@ p{color:var(--ink-soft);max-width:62ch}
 .cta-link::after{display:none}
 .cta-link:hover{background:var(--gold);color:var(--bg) !important}
 
-.burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem;gap:5px;flex-direction:column;position:relative;z-index:60}
-.burger span{display:block;width:24px;height:1px;background:var(--ink);transition:transform .4s var(--ease), opacity .3s var(--ease), background .3s var(--ease)}
+.burger{
+  display:none;background:none;border:0;cursor:pointer;
+  padding:.55rem .45rem;gap:6px;flex-direction:column;
+  position:relative;z-index:60;
+  width:36px;height:36px;align-items:center;justify-content:center;
+}
+.burger span{
+  display:block;width:24px;height:2px;background:var(--ink);
+  border-radius:2px;
+  transform-origin:center center;
+  transition:transform .4s var(--ease), opacity .3s var(--ease), background .3s var(--ease);
+  backface-visibility:hidden;
+}
 .burger[aria-expanded="true"] span{background:var(--gold)}
-.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
-.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 
 /* Backdrop */
 .nav-backdrop{
@@ -805,13 +816,31 @@ p{color:var(--ink-soft);max-width:62ch}
     display:flex !important;
     position:fixed;top:0;right:0;bottom:0;width:78%;max-width:340px;z-index:50;
     background:var(--bg-2);flex-direction:column;align-items:flex-start;justify-content:center;
-    padding:3rem;gap:1.8rem;border-left:1px solid var(--line);
+    padding:3rem 2.4rem;gap:1.6rem;border-left:1px solid var(--line);
     transform:translateX(100%);
     transition:transform .5s var(--ease);
     visibility:hidden;
     overflow-y:auto;overscroll-behavior:contain;
+    -webkit-font-smoothing:antialiased;
   }
   .nav-links.open{transform:none;visibility:visible}
+  .nav-links a{
+    font-size:1.05rem;
+    letter-spacing:.14em;
+    color:var(--ink);
+    padding:.5rem 0;
+    width:100%;
+    font-family:var(--serif);
+    font-weight:400;
+    text-transform:none;
+  }
+  .nav-links a::after{display:none}
+  .nav-links .cta-link{
+    margin-top:1rem;
+    padding:.9rem 1.4rem !important;
+    font-family:var(--sans);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    text-align:center;align-self:stretch;
+  }
   .burger{display:flex}
   .split{grid-template-columns:1fr;gap:3rem}
   .hero-row{grid-template-columns:1fr}
