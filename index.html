@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aficionados Nantes — Cercle privé dédié à l'art du cigare</title>
+  <meta name="description" content="Aficionados Nantes — cercle privé à Nantes dédié à l'art du cigare. Soirées thématiques, dégustations rares. Rejoignez le cercle." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b0907" />
+  <link rel="canonical" href="https://virtualvaultboy-pixel.github.io/aficionados-nantes/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Aficionados Nantes" />
+  <meta property="og:title" content="Aficionados Nantes — Cercle privé dédié à l'art du cigare" />
+  <meta property="og:description" content="Soirées thématiques, dégustations rares, transmission. Rejoignez le cercle." />
+  <meta property="og:url" content="https://virtualvaultboy-pixel.github.io/aficionados-nantes/" />
+  <meta property="og:image" content="https://virtualvaultboy-pixel.github.io/aficionados-nantes/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aficionados Nantes — Cercle privé" />
+  <meta name="twitter:description" content="L'art du cigare, en cercle restreint." />
+  <meta name="twitter:image" content="https://virtualvaultboy-pixel.github.io/aficionados-nantes/og-image.jpg" />
+
+  <!-- Favicon SVG inline (lettre A dorée sur fond sombre) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0907'/%3E%3Cpath d='M32 14 L48 50 H42 L38 42 H26 L22 50 H16 Z M28 36 H36 L32 24 Z' fill='%23c8a96a'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+  <!-- Analytics : à activer plus tard (Plausible, GA4, Cloudflare Web Analytics, etc.) -->
+  <!-- <script defer data-domain="virtualvaultboy-pixel.github.io/aficionados-nantes" src="https://plausible.io/js/script.js"></script> -->
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- JSON-LD : Organisation -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Aficionados Nantes",
+    "url": "https://virtualvaultboy-pixel.github.io/aficionados-nantes/",
+    "logo": "https://virtualvaultboy-pixel.github.io/aficionados-nantes/logo.png",
+    "description": "Cercle privé nantais dédié à l'art du cigare.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nantes",
+      "addressCountry": "FR"
+    },
+    "sameAs": [
+      "https://www.youtube.com/@yanlenantais7162",
+      "https://www.facebook.com/people/Aficionados-Nantes/pfbid0346mQar2bmedypmJHji1Zu9KyeT4qBuhgH6BCsPv5T2sR9U51wN89vrC7rkzX6Subl/"
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD : Événement (exemple) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Soirée Cohíba · Accord Rhum vieux",
+    "startDate": "2026-06-14T19:30",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "Nantes centre",
+      "address": {"@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR"}
+    },
+    "description": "Dégustation guidée — module Behike 56, accord rhums agricoles millésimés.",
+    "organizer": {"@type": "Organization", "name": "Aficionados Nantes"}
+  }
+  </script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Age gate légal -->
+  <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
+    <div class="age-card">
+      <span class="brand-mark age-mark">A</span>
+      <p class="eyebrow center">Aficionados Nantes</p>
+      <h2 id="ageTitle" class="center">Interdit aux mineurs<br/>de <em>18 ans</em>.</h2>
+      <p class="center sub">Avez-vous plus de 18 ans ?</p>
+      <div class="age-actions">
+        <button class="btn btn-primary" id="ageYes">Oui, j'ai 18 ans ou plus</button>
+        <button class="btn btn-ghost" id="ageNo">Non</button>
+      </div>
+      <label class="age-remember"><input type="checkbox" id="ageRemember" checked/> <span>Se souvenir de moi</span></label>
+      <p class="age-warning">Fumer nuit gravement à votre santé et à celle de votre entourage.</p>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-mark">A</span>
+      <span class="brand-name">Aficionados <em>Nantes</em></span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#cercle">Le Cercle</a>
+      <a href="#soirees">Soirées</a>
+      <a href="#journal">Journal</a>
+      <a href="#videos">Vidéos</a>
+      <a href="#rejoindre" class="cta-link">Rejoindre</a>
+    </nav>
+    <button class="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO : inscription en action principale -->
+  <section id="top" class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <p class="eyebrow reveal">Cercle privé · Nantes</p>
+      <h1 class="reveal hero-title">L'art du <em>cigare</em>,<br/>en cercle restreint.</h1>
+      <p class="lead reveal">Soirées confidentielles, dégustations rares, transmission d'un savoir-faire.<br/>Rejoignez le cercle — l'inscription se fait par cette porte.</p>
+
+      <form id="signupForm" class="hero-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="Nouvelle inscription Aficionados Nantes" />
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="hero-row">
+          <input type="text" name="prenom" placeholder="Prénom" required />
+          <input type="text" name="nom" placeholder="Nom" required />
+        </div>
+        <div class="hero-row">
+          <input type="email" name="email" placeholder="Adresse email" required />
+          <button type="submit" class="btn btn-primary">M'inscrire</button>
+        </div>
+        <p class="hero-mini">Inscription gratuite · Confidentialité garantie · Réservé aux 18 ans et plus</p>
+        <p class="form-ok" id="signupOk" hidden>Bienvenue. Nous reviendrons vers vous personnellement.</p>
+      </form>
+
+      <div class="hero-secondary reveal">
+        <a href="#soirees" class="link-arrow">Découvrir les soirées <span>→</span></a>
+        <a href="#journal" class="link-arrow">Lire le journal <span>→</span></a>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- LE CERCLE - court -->
+  <section id="cercle" class="section">
+    <div class="container split">
+      <div class="split-text">
+        <p class="eyebrow reveal">Le Cercle</p>
+        <h2 class="reveal">Un lieu où le <em>temps</em> reprend sa place.</h2>
+        <p class="reveal">Aficionados Nantes réunit les passionnés du cigare autour de soirées intimistes, de dégustations rares et de rencontres avec les maîtres du métier. Nous cultivons la patience, le geste et la conversation.</p>
+        <p class="reveal">Notre cercle est confidentiel. Les places sont limitées, l'esprit est libre.</p>
+      </div>
+      <ul class="pillars">
+        <li class="reveal">
+          <i class="ph-duotone ph-wine pillar-icon" aria-hidden="true"></i>
+          <span class="num">01</span>
+          <h3>Dégustation</h3>
+          <p>Modules guidés, accords spiritueux, références d'exception.</p>
+        </li>
+        <li class="reveal">
+          <i class="ph-duotone ph-hand-heart pillar-icon" aria-hidden="true"></i>
+          <span class="num">02</span>
+          <h3>Transmission</h3>
+          <p>Rencontres avec torcedors, maîtres de chai, négociants.</p>
+        </li>
+        <li class="reveal">
+          <i class="ph-duotone ph-key pillar-icon" aria-hidden="true"></i>
+          <span class="num">03</span>
+          <h3>Confidentialité</h3>
+          <p>Soirées privées, lieux discrets, esprit de cercle.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SOIRÉES & ÉVÉNEMENTS -->
+  <section id="soirees" class="section section-dark">
+    <div class="container">
+      <p class="eyebrow center reveal">Soirées & Événements</p>
+      <h2 class="center reveal">Prochains <em>rendez-vous</em>.</h2>
+      <p class="center sub reveal">Soirées thématiques, dégustations en format expert, rencontres avec les maisons.<br/>L'agenda du cercle pour les mois qui viennent.</p>
+
+      <ul class="agenda">
+        <li class="reveal">
+          <div class="agenda-date"><span class="day">14</span><span class="month">Juin</span></div>
+          <div class="agenda-body">
+            <h3>Soirée Cohíba · Accord Rhum vieux</h3>
+            <p>Dégustation guidée — module Behike 56, accord rhums agricoles millésimés.</p>
+            <span class="agenda-meta">
+              <i class="ph ph-map-pin" aria-hidden="true"></i> Nantes centre
+              <i class="ph ph-clock" aria-hidden="true"></i> 19h30
+              <i class="ph ph-envelope-simple" aria-hidden="true"></i> Sur invitation
+            </span>
+          </div>
+          <a href="#rejoindre" class="agenda-cta">Réserver</a>
+        </li>
+        <li class="reveal">
+          <div class="agenda-date"><span class="day">02</span><span class="month">Juil</span></div>
+          <div class="agenda-body">
+            <h3>Rencontre Torcedor</h3>
+            <p>Un maître rouleur cubain partage son geste lors d'une session ouverte aux membres.</p>
+            <span class="agenda-meta">
+              <i class="ph ph-map-pin" aria-hidden="true"></i> Lieu confidentiel
+              <i class="ph ph-clock" aria-hidden="true"></i> 20h
+              <i class="ph ph-users-three" aria-hidden="true"></i> Membres uniquement
+            </span>
+          </div>
+          <a href="#rejoindre" class="agenda-cta">Réserver</a>
+        </li>
+        <li class="reveal">
+          <div class="agenda-date"><span class="day">12</span><span class="month">Sept</span></div>
+          <div class="agenda-body">
+            <h3>Dîner Vuelta Abajo</h3>
+            <p>Cinq services, cinq modules. Une traversée du terroir cubain en une soirée.</p>
+            <span class="agenda-meta">
+              <i class="ph ph-map-pin" aria-hidden="true"></i> Restaurant partenaire
+              <i class="ph ph-clock" aria-hidden="true"></i> 19h
+              <i class="ph ph-check-circle" aria-hidden="true"></i> Inscription requise
+            </span>
+          </div>
+          <a href="#rejoindre" class="agenda-cta">Réserver</a>
+        </li>
+      </ul>
+
+      <div class="bespoke reveal">
+        <div>
+          <p class="eyebrow"><i class="ph ph-sparkle" aria-hidden="true"></i> Sur mesure</p>
+          <h3>Organiser votre soirée cigare</h3>
+          <p>Anniversaires, séminaires, mariages, EVG. Nous concevons votre événement épicurien — dégustation guidée, accords spiritueux, encadrement par un expert du cercle.</p>
+        </div>
+        <a href="#rejoindre" class="btn btn-ghost">Nous contacter <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LE JOURNAL (blog) -->
+  <section id="journal" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Le Journal</p>
+      <h2 class="reveal">Lectures du <em>cercle</em>.</h2>
+      <p class="sub reveal">Cigares, spiritueux, art de vivre. Les notes des aficionados pour qui aime prendre le temps.</p>
+
+      <div class="blog-grid">
+        <article class="post reveal">
+          <div class="post-img post-img-1" aria-hidden="true">
+            <span class="post-cat">Module</span>
+            <div class="post-orn"><i class="ph-duotone ph-fire"></i></div>
+          </div>
+          <div class="post-body">
+            <span class="post-date"><i class="ph ph-calendar-blank"></i> 12 mai 2026</span>
+            <h3>Cohíba Behike 56 — Note de dégustation</h3>
+            <p>Le module mythique de la maison passé au crible : terre, cèdre, notes lactées et finale au cacao amer.</p>
+            <a href="#" class="link-arrow">Lire <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="post reveal">
+          <div class="post-img post-img-2" aria-hidden="true">
+            <span class="post-cat">Savoir-faire</span>
+            <div class="post-orn"><i class="ph-duotone ph-ruler"></i></div>
+          </div>
+          <div class="post-body">
+            <span class="post-date"><i class="ph ph-calendar-blank"></i> 28 avril 2026</span>
+            <h3>Comprendre les vitoles — du Robusto au Double Corona</h3>
+            <p>Petit guide des formats pour s'orienter dans une cave — et choisir la longueur juste pour le bon moment.</p>
+            <a href="#" class="link-arrow">Lire <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="post reveal">
+          <div class="post-img post-img-3" aria-hidden="true">
+            <span class="post-cat">Conservation</span>
+            <div class="post-orn"><i class="ph-duotone ph-thermometer"></i></div>
+          </div>
+          <div class="post-body">
+            <span class="post-date"><i class="ph ph-calendar-blank"></i> 15 avril 2026</span>
+            <h3>L'humidor idéal — Humidité, température, patience</h3>
+            <p>70% et 18°C, vraiment ? Démêler les idées reçues sur la conservation et bâtir une cave qui tient la distance.</p>
+            <a href="#" class="link-arrow">Lire <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="post reveal">
+          <div class="post-img post-img-4" aria-hidden="true">
+            <span class="post-cat">Voyage</span>
+            <div class="post-orn"><i class="ph-duotone ph-compass"></i></div>
+          </div>
+          <div class="post-body">
+            <span class="post-date"><i class="ph ph-calendar-blank"></i> 02 avril 2026</span>
+            <h3>Vuelta Abajo — Carnet d'un séjour</h3>
+            <p>De Pinar del Río aux champs de Robaina : trois jours dans la province où naît le meilleur tabac du monde.</p>
+            <a href="#" class="link-arrow">Lire <span>→</span></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="center reveal" style="margin-top:3rem">
+        <a href="#" class="btn btn-ghost">Tous les articles <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDÉOS -->
+  <section id="videos" class="section section-dark">
+    <div class="container">
+      <p class="eyebrow center reveal">Chaîne YouTube</p>
+      <h2 class="center reveal">Le cercle en <em>images</em>.</h2>
+      <p class="center sub reveal">Dégustations, portraits, voyages. Suivez Yan Le Nantais et le cercle Aficionados sur YouTube.</p>
+      <div class="video-wrap reveal">
+        <a class="video-frame" href="https://www.youtube.com/@yanlenantais7162" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <div class="play" aria-hidden="true">
+              <i class="ph-fill ph-play"></i>
+            </div>
+            <div class="video-meta">
+              <span><i class="ph-fill ph-youtube-logo"></i> YouTube · Yan Le Nantais</span>
+              <strong>Voir la chaîne</strong>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REJOINDRE / CONTACT -->
+  <section id="rejoindre" class="section">
+    <div class="container narrow">
+      <p class="eyebrow center reveal">Rejoindre le Cercle</p>
+      <h2 class="center reveal">Une demande, une <em>conversation</em>.</h2>
+      <p class="center sub reveal">Les adhésions se font par parrainage ou sur entretien. Écrivez-nous — nous prenons le temps de répondre.</p>
+
+      <form id="contactForm" class="form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="Nouveau contact Aficionados Nantes" />
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="row">
+          <label><span>Nom</span><input type="text" name="nom" required /></label>
+          <label><span>Prénom</span><input type="text" name="prenom" required /></label>
+        </div>
+        <label><span>Email</span><input type="email" name="email" required /></label>
+        <label><span>Message</span><textarea name="message" rows="5" placeholder="Présentez-vous en quelques lignes." required></textarea></label>
+        <button type="submit" class="btn btn-primary">Envoyer <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></button>
+        <p class="form-ok" id="contactOk" hidden>Message reçu. Nous reviendrons vers vous personnellement.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <span class="brand-mark">A</span>
+        <p class="footer-name">Aficionados <em>Nantes</em></p>
+        <p class="footer-tag">Cercle privé dédié à l'art du cigare.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Le Cercle</h4>
+        <a href="#cercle">À propos</a>
+        <a href="#soirees">Soirées</a>
+        <a href="#journal">Journal</a>
+      </div>
+      <div class="footer-links">
+        <h4>Suivez-nous</h4>
+        <a href="https://www.youtube.com/@yanlenantais7162" target="_blank" rel="noopener"><i class="ph-fill ph-youtube-logo"></i> YouTube</a>
+        <a href="https://www.facebook.com/people/Aficionados-Nantes/pfbid0346mQar2bmedypmJHji1Zu9KyeT4qBuhgH6BCsPv5T2sR9U51wN89vrC7rkzX6Subl/" target="_blank" rel="noopener"><i class="ph-fill ph-facebook-logo"></i> Facebook</a>
+        <a href="#rejoindre"><i class="ph ph-envelope-simple"></i> Contact</a>
+      </div>
+      <p class="legal">Fumer nuit gravement à votre santé et à celle de votre entourage.</p>
+      <p class="copy">© <span id="year"></span> Aficionados Nantes · Tous droits réservés · Mentions légales</p>
+    </div>
+  </footer>
+
+  <!-- Smooth scroll + animations -->
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
