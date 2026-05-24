@@ -119,6 +119,13 @@
   <!-- HERO : inscription en action principale -->
   <section id="top" class="hero">
     <div class="hero-bg" aria-hidden="true"></div>
+    <div class="smoke-layer" aria-hidden="true">
+      <div class="smoke s1"></div>
+      <div class="smoke s2"></div>
+      <div class="smoke s3"></div>
+      <div class="smoke s4"></div>
+      <div class="smoke s5"></div>
+    </div>
     <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-inner">
       <p class="eyebrow reveal">Cercle privé · Nantes</p>
@@ -292,28 +299,9 @@
 
       <div class="blog-grid">
         <article class="post reveal">
-          <div class="post-img post-img-1" aria-hidden="true">
+          <div class="post-img post-img-1">
+            <img class="post-photo" src="https://images.pexels.com/photos/10343917/pexels-photo-10343917.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cigare Cohíba dans un cendrier cristal avec fumée" loading="lazy" />
             <span class="post-cat">Module</span>
-            <svg class="post-svg" viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="cig1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#3a2818"/>
-                  <stop offset="50%" stop-color="#6e4a2a"/>
-                  <stop offset="85%" stop-color="#c8a96a"/>
-                  <stop offset="100%" stop-color="#2a1810"/>
-                </linearGradient>
-              </defs>
-              <!-- Fumée -->
-              <path d="M260 60 Q280 40 270 25 Q260 10 275 0" stroke="rgba(200,169,106,.35)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-              <path d="M275 70 Q295 50 285 35 Q275 20 290 10" stroke="rgba(200,169,106,.22)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-              <path d="M250 65 Q265 50 258 38 Q251 26 263 16" stroke="rgba(200,169,106,.18)" stroke-width="1" fill="none" stroke-linecap="round"/>
-              <!-- Cigare -->
-              <rect x="60" y="110" width="220" height="22" rx="11" fill="url(#cig1)"/>
-              <rect x="58" y="108" width="60" height="26" rx="3" fill="#1a1208" stroke="#c8a96a" stroke-width=".8"/>
-              <text x="88" y="125" font-family="Cormorant Garamond" font-size="9" fill="#c8a96a" text-anchor="middle" letter-spacing="1">COHÍBA</text>
-              <circle cx="282" cy="121" r="3" fill="#ff8a3c" opacity=".9"/>
-              <circle cx="282" cy="121" r="6" fill="none" stroke="#ff8a3c" stroke-width=".4" opacity=".5"/>
-            </svg>
           </div>
           <div class="post-body">
             <span class="post-date"><i class="ph ph-calendar-blank"></i> 12 mai 2026</span>
@@ -324,30 +312,9 @@
         </article>
 
         <article class="post reveal">
-          <div class="post-img post-img-2" aria-hidden="true">
+          <div class="post-img post-img-2">
+            <img class="post-photo" src="https://images.pexels.com/photos/10343915/pexels-photo-10343915.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sélection de cigares de différentes vitoles" loading="lazy" />
             <span class="post-cat">Savoir-faire</span>
-            <svg class="post-svg" viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="cig2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#2a1a10"/>
-                  <stop offset="100%" stop-color="#8a6438"/>
-                </linearGradient>
-              </defs>
-              <!-- 4 vitoles différentes tailles -->
-              <rect x="60" y="60" width="280" height="14" rx="7" fill="url(#cig2)"/>
-              <text x="50" y="71" font-family="Inter" font-size="8" fill="#8a7e6a" text-anchor="end" letter-spacing="2">DBL CORONA</text>
-              <rect x="80" y="92" width="220" height="14" rx="7" fill="url(#cig2)"/>
-              <text x="70" y="103" font-family="Inter" font-size="8" fill="#8a7e6a" text-anchor="end" letter-spacing="2">CHURCHILL</text>
-              <rect x="110" y="124" width="160" height="14" rx="7" fill="url(#cig2)"/>
-              <text x="100" y="135" font-family="Inter" font-size="8" fill="#8a7e6a" text-anchor="end" letter-spacing="2">CORONA</text>
-              <rect x="140" y="156" width="110" height="14" rx="7" fill="url(#cig2)"/>
-              <text x="130" y="167" font-family="Inter" font-size="8" fill="#8a7e6a" text-anchor="end" letter-spacing="2">ROBUSTO</text>
-              <!-- Bagues -->
-              <rect x="60" y="58" width="16" height="18" rx="2" fill="none" stroke="#c8a96a" stroke-width=".8"/>
-              <rect x="80" y="90" width="16" height="18" rx="2" fill="none" stroke="#c8a96a" stroke-width=".8"/>
-              <rect x="110" y="122" width="16" height="18" rx="2" fill="none" stroke="#c8a96a" stroke-width=".8"/>
-              <rect x="140" y="154" width="16" height="18" rx="2" fill="none" stroke="#c8a96a" stroke-width=".8"/>
-            </svg>
           </div>
           <div class="post-body">
             <span class="post-date"><i class="ph ph-calendar-blank"></i> 28 avril 2026</span>
@@ -358,30 +325,9 @@
         </article>
 
         <article class="post reveal">
-          <div class="post-img post-img-3" aria-hidden="true">
+          <div class="post-img post-img-3">
+            <img class="post-photo" src="https://images.pexels.com/photos/5944420/pexels-photo-5944420.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cigare allumé dans une ambiance sombre" loading="lazy" />
             <span class="post-cat">Conservation</span>
-            <svg class="post-svg" viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="box3" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#3a2616"/>
-                  <stop offset="100%" stop-color="#1d1410"/>
-                </linearGradient>
-              </defs>
-              <!-- Humidor box -->
-              <rect x="90" y="80" width="220" height="100" rx="4" fill="url(#box3)" stroke="#c8a96a" stroke-width="1"/>
-              <rect x="90" y="80" width="220" height="22" rx="4" fill="#0b0907" stroke="#c8a96a" stroke-width=".8"/>
-              <!-- Cigares dans la boite -->
-              <line x1="110" y1="118" x2="290" y2="118" stroke="#6e4a2a" stroke-width="6" stroke-linecap="round"/>
-              <line x1="110" y1="132" x2="290" y2="132" stroke="#7a5430" stroke-width="6" stroke-linecap="round"/>
-              <line x1="110" y1="146" x2="290" y2="146" stroke="#6e4a2a" stroke-width="6" stroke-linecap="round"/>
-              <line x1="110" y1="160" x2="290" y2="160" stroke="#7a5430" stroke-width="6" stroke-linecap="round"/>
-              <!-- Hygromètre -->
-              <circle cx="200" cy="91" r="7" fill="none" stroke="#c8a96a" stroke-width=".8"/>
-              <text x="200" y="93" font-family="Inter" font-size="5" fill="#c8a96a" text-anchor="middle">70%</text>
-              <!-- Vapeur -->
-              <path d="M340 90 Q345 80 340 70" stroke="rgba(200,169,106,.4)" stroke-width="1" fill="none"/>
-              <path d="M350 100 Q355 90 350 80" stroke="rgba(200,169,106,.3)" stroke-width="1" fill="none"/>
-            </svg>
           </div>
           <div class="post-body">
             <span class="post-date"><i class="ph ph-calendar-blank"></i> 15 avril 2026</span>
@@ -392,26 +338,9 @@
         </article>
 
         <article class="post reveal">
-          <div class="post-img post-img-4" aria-hidden="true">
+          <div class="post-img post-img-4">
+            <img class="post-photo" src="https://images.pexels.com/photos/31332328/pexels-photo-31332328.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Champs de tabac de la région cubaine" loading="lazy" />
             <span class="post-cat">Voyage</span>
-            <svg class="post-svg" viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="sky4" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#3a2818"/>
-                  <stop offset="60%" stop-color="#6e4a2a" stop-opacity=".3"/>
-                  <stop offset="100%" stop-color="#221814" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <!-- Soleil -->
-              <circle cx="280" cy="80" r="18" fill="#c8a96a" opacity=".85"/>
-              <circle cx="280" cy="80" r="32" fill="none" stroke="#c8a96a" stroke-width=".4" opacity=".4"/>
-              <!-- Montagnes Vuelta Abajo -->
-              <path d="M0 180 L80 110 L140 150 L210 90 L290 140 L360 100 L400 130 L400 200 L0 200 Z" fill="url(#sky4)" stroke="#c8a96a" stroke-width=".8"/>
-              <path d="M0 200 L60 150 L120 175 L200 130 L260 170 L340 145 L400 175 L400 225 L0 225 Z" fill="#1a1208" stroke="#c8a96a" stroke-width=".5" opacity=".9"/>
-              <!-- Champs de tabac (lignes) -->
-              <line x1="20" y1="210" x2="380" y2="210" stroke="#6e4a2a" stroke-width=".4" opacity=".6"/>
-              <line x1="40" y1="216" x2="360" y2="216" stroke="#6e4a2a" stroke-width=".4" opacity=".4"/>
-            </svg>
           </div>
           <div class="post-body">
             <span class="post-date"><i class="ph ph-calendar-blank"></i> 02 avril 2026</span>
